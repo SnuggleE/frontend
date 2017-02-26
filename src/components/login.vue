@@ -1,5 +1,6 @@
 <template>
   <div class="background">
+    <h1 class="title">北京同盛科创科技发展有限公司</h1>
     <div class="login">
       <p class="input">
         <el-input v-model="username" placeholder="用户名"></el-input>
@@ -12,7 +13,18 @@
         <el-button @click="modify" type="primary">修改</el-button>
       </p>
     </div>
-    <el-dialog></el-dialog>
+    <el-dialog title="修改密码" v-model="dialogVisible" size="tiny">
+      <p class="input">
+        <el-input v-model="newPwd" type="password" placeholder="旧密码"></el-input>
+      </p>
+      <p class="input">
+        <el-input v-model="newPwdRepeat" type="password" placeholder="旧密码"></el-input>
+      </p>
+      <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="submitModify">确 定</el-button>
+  </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -24,7 +36,10 @@ export default {
   data () {
     return {
       username:'',
-      password:''
+      password:'',
+      dialogVisible:false,
+      newPwdRepeat:'',
+      newPwd:''
     }
   },
   methods:{
@@ -48,15 +63,42 @@ export default {
           })
       },
     modify(){
-          console.log(router);
-          api_performance.getuser()
-            .then(function (res) {
-              console.log(res);
-              if(res.data.message=='ok')
-              {
-                  router.push('/home')
-              }
-            })
+          let context=this;
+      let userdata={
+        username:context.username,
+        password:context.password
+      }
+      api_performance.auth(userdata)
+        .then(function (res) {
+          console.log(res)
+          if(res.data.message=='ok')
+          {
+            context.dialogVisible=true;
+          }
+          else
+            context.$message.error("用户名或者密码错误！")
+        })
+
+    },
+    submitModify(){
+        let context=this;
+        if(context.newPwdRepeat!==context.newPwd){
+            context.$message.warning("两次输入不一致！");
+            return;
+        }
+        else if(context.newPwdRepeat===context.newPwd){
+            let newUserData={
+                username:context.username,
+              newPwd:context.newPwd
+            }
+            api_performance.modifyPwd(newUserData)
+              .then(function (res) {
+                if(res.data.message=='ok'){
+                    context.$message.success('修改成功！请使用新密码登陆。');
+                    context.dialogVisible=false;
+                }
+              })
+      }
     }
   }
 }
@@ -67,7 +109,7 @@ export default {
   .background{
     width: 100%;
     height: 100%;
-    background-color: #2c3e50;
+    background-color: #c5d7bc;
   }
 .login{
   width: 400px;
@@ -77,9 +119,15 @@ export default {
   left: 50%;
   margin-left: -200px;
   margin-top: -150px;
-  background-color: #4d418b;
+  background-color: #354a6f;
   border-radius: 5px;
   padding: 50px;
   box-sizing: border-box;
 }
+  .title{
+    background-color: transparent;
+    color: #8b392b;
+    padding-top: 50px;
+    margin:0;
+  }
 </style>

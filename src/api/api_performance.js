@@ -21,6 +21,20 @@ const auth=function (data) {
     }]
   })
 }
+const modifyPwd=function (data) {
+  return axios.request({
+    url:api_config.MODIFY_PASSWORD(),
+    data:data,
+    method:'POST',
+    timeout:TIME_OUT,
+    headers : {
+      'Content-Type' : 'application/x-www-form-urlencoded'
+    },
+    transformRequest: [function (data) {
+      return qs.stringify(data);
+    }]
+  })
+}
 const getuser=function () {
   return axios.request({
     url:api_config.GET_USER(),
@@ -29,4 +43,4 @@ const getuser=function () {
 }
 
 
-export {auth,getuser}
+export {auth,getuser,modifyPwd}

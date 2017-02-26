@@ -9,3 +9,6 @@ export const AUTH=function () {
 export const GET_USER=function () {
   return host+'/getuser'
 }
+export const MODIFY_PASSWORD=function () {
+  return host+'/modifyPwd'
+}

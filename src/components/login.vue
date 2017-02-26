@@ -3,22 +3,22 @@
     <h1 class="title">北京同盛科创科技发展有限公司</h1>
     <div class="login">
       <p class="input">
-        <el-input v-model="username" placeholder="用户名"></el-input>
+        <el-input auto-complete="off" v-model="username" placeholder="用户名"></el-input>
       </p>
       <p class="input">
-        <el-input type="password" v-model="password" placeholder="密码"></el-input>
+        <el-input auto-complete="off" type="password" v-model="password" placeholder="密码"></el-input>
       </p>
       <p class="input">
         <el-button @click="login" type="primary">登录</el-button>
         <el-button @click="modify" type="primary">修改</el-button>
       </p>
     </div>
-    <el-dialog title="修改密码" v-model="dialogVisible" size="tiny">
+    <el-dialog title="修改密码" v-model="dialogVisible"  size="tiny">
       <p class="input">
-        <el-input v-model="newPwd" type="password" placeholder="旧密码"></el-input>
+        <el-input auto-complete="off" v-model="newPwd" type="password" placeholder="新密码"></el-input>
       </p>
       <p class="input">
-        <el-input v-model="newPwdRepeat" type="password" placeholder="旧密码"></el-input>
+        <el-input auto-complete="off" v-model="newPwdRepeat" type="password" placeholder="重复输入"></el-input>
       </p>
       <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取 消</el-button>
@@ -109,7 +109,7 @@ export default {
   .background{
     width: 100%;
     height: 100%;
-    background-color: #c5d7bc;
+    /*background-color: #c5d7bc;*/
   }
 .login{
   width: 400px;

@@ -109,7 +109,7 @@ export default {
   .background{
     width: 100%;
     height: 100%;
-    /*background-color: #c5d7bc;*/
+    background-color: #516881;
   }
 .login{
   width: 400px;
@@ -119,7 +119,7 @@ export default {
   left: 50%;
   margin-left: -200px;
   margin-top: -150px;
-  background-color: #354a6f;
+  background-color: #6f5667;
   border-radius: 5px;
   padding: 50px;
   box-sizing: border-box;

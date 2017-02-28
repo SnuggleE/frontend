@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'hello',
+  name: 'week',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

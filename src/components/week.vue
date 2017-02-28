@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
 
-    <h2>performance</h2>
+    <h2>WEEK</h2>
 
   </div>
 </template>
